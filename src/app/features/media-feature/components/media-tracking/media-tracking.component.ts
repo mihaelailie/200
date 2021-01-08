@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MediaItem } from '../../models';
-import { MediaDataService } from '../../services/media-data.service';
+import { MediaCreate } from '../../models/media-create';
+import { MediaFeatureState, selectMediaItems } from '../../reducers';
+import { mediaAdded } from '../../actions/media.actions';
 
 @Component({
   selector: 'app-media-tracking',
@@ -11,9 +14,17 @@ import { MediaDataService } from '../../services/media-data.service';
 export class MediaTrackingComponent implements OnInit {
 
   data$!: Observable<MediaItem[]>;
-  constructor(private mediaService: MediaDataService) { }
+
+  constructor(private store: Store<MediaFeatureState>) { }
 
   ngOnInit(): void {
-    this.data$ = this.mediaService.getMediaLibraryItems();
+
+    this.data$ = this.store.pipe(
+      select(selectMediaItems)
+    );
+  }
+
+  onItemAdded(media: MediaCreate): void {
+    this.store.dispatch(mediaAdded({ media }));
   }
 }

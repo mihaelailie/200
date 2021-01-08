@@ -1,4 +1,4 @@
-export interface MediaItem {
+export interface MediaCreate {
   title: string;
   format: string;
   isLoaned: boolean;

@@ -1,3 +1,6 @@
 <section>
+  <app-media-entry (itemAdded)="onItemAdded($event)"></app-media-entry>
+</section>
+<section>
   <app-media-list [items]="data$ | async"></app-media-list>
 </section>

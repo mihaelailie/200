@@ -1,22 +1,22 @@
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { MediaItem } from '../models';
-
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-
+import { MediaCreate } from '../models/media-create';
 
 export class MediaDataService {
 
   private data: MediaItem[] = [
-    { id: '1', title: 'Shawshank Redemption', format: 'Movie', isLoaned: false },
-    { id: '2', title: 'Gone with the Wind', format: 'Movie', isLoaned: true }
+    { title: 'Shawshank Redemption', format: 'Movie', isLoaned: false },
+    { title: 'Gone with the Wind', format: 'Movie', isLoaned: true }
   ]
   private subject = new BehaviorSubject<MediaItem[]>(this.data)
 
 
   getMediaLibraryItems(): Observable<MediaItem[]> {
     return this.subject.asObservable();
+  }
+
+  addItem(mediaItem: MediaCreate): void {
+    this.data = [mediaItem, ...this.data];
+    this.subject.next(this.data);
   }
 }

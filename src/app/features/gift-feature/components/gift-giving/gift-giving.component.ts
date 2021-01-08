@@ -17,6 +17,7 @@ export class GiftGivingComponent implements OnInit {
   data$!: Observable<GiftItem[]>;
   constructor(private store: Store<GiftFeatureState>) { }
 
+
   ngOnInit(): void {
     this.data$ = this.store.pipe(
       select(selectGiftItems)
