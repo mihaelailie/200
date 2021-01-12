@@ -17,7 +17,8 @@ export const mediaAdded = createAction(
   '[media-tracking media] add media data',
   ({ media }: { media: MediaCreate }) => ({
     payload: {
-      ...media
+      ...media,
+      id: 'T' + fakeId++
     } as MediaLibraryEntity
   })
 );

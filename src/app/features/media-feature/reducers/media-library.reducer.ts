@@ -16,7 +16,8 @@ export const adapter = createEntityAdapter<MediaLibraryEntity>();
 
 //const initialState = adapter.getInitialState();
 
-const initialState: MediaLibraryState = {
+const initialState: MediaLibraryState =
+{
   ids: ['1', '2'],
   entities: {
     1: { id: '1', title: 'x', format: 'Movie', isLoaned: false },
